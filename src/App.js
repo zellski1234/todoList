@@ -1,13 +1,10 @@
 import './App.css';
 import { useEffect, useRef, useState } from 'react';
+// icons
 import { BsTrash } from 'react-icons/bs';
 import { TiEdit } from 'react-icons/ti';
 
 function App() {
-
-
-		
-		
 	return (
 		<div className="App">
 			<TodoList />
@@ -30,14 +27,14 @@ function TodoForm ({ onSubmit }) {
 	}
 
 	// stops button from refreshing
-	function handleSumbit (i) {
-		i.preventDefault();	
+	function handleSumbit (event) {
+		event.preventDefault();	
 		
 		// generats random ID for listitem
 		onSubmit(
 			// object for each item containing random id and input
 			{
-			id: Math.floor(Math.random() * 10000),
+			id: Math.floor(Math.random() * 10000),	
 			text: input
 			}
 		);
@@ -56,6 +53,7 @@ function TodoForm ({ onSubmit }) {
 				className="todo-input"
 				onChange={handleChange}
 				ref={inputRef}
+				autoComplete="off"
 			/>
 			<button className='todo-button'>+</button>
 		</form>
@@ -64,23 +62,16 @@ function TodoForm ({ onSubmit }) {
 
 // --------------------------- Functional Component ------------------------
 function TodoList () {
-	const [list, setList] = useState([]);
-
-	// let todos = [...list];
-	
+	const [list, setList] = useState([]);	
 	// stops user from adding empty todo list items
 	function addTodo (todo){
-		if(!todo.text || /^\s*$/.test(todo.text)){
+		if(!todo.text){
 			return
 		}
-
 		const newTodos = [todo, ...list]
-
 		setList(newTodos);
-		// console.log(todo);
 	};
 	
-	// 
 	const updateTodo = (listid, newValue) => {
 		if(!newValue.text || /^\s*$/.test(newValue.text)){
 			return
@@ -90,9 +81,9 @@ function TodoList () {
 	};
 
 	// allows you to remove selected todo list item
-	function removeTodo (id) {
+	function removeTodo (id, e) {
+		e.stopPropagation()
 		const removeList = [...list].filter(todo => todo.id !== id)
-
 		setList(removeList)
 	}
 
@@ -123,8 +114,8 @@ function TodoList () {
 }
 
 // --------------------------- Functional Component ------------------------
+// the actual todo component that lists the item
 function Todo ({ list, completeTodo, removeTodo, updateTodo}) {
-	
 	const [edit, setEdit] = useState(
 		// object
 		{
@@ -146,18 +137,18 @@ function Todo ({ list, completeTodo, removeTodo, updateTodo}) {
 	}
 
 	return list.map((todo, index) => (
-		<div className={todo.isComplete ? 'todo-row2 complete' : 'todo-row'} 
+		<div onClick={()=> {completeTodo(todo.id)}} className={todo.isComplete ? 'todo-row2 complete' : 'todo-row'} 
 			 key={index}>
-				<div key={todo.id} onClick={()=> completeTodo(todo.id)}>
-					{todo.text}
-				</div>
+				<p key={todo.id}>
+					{index+1} {todo.text}
+				</p>
 				<div className='icons'>
 					<BsTrash 
-						onClick={()=> removeTodo(todo.id)}
+						onClick={(e)=> removeTodo(todo.id, e)}
 						className="delete-icon"
 					/>
 					<TiEdit 
-					onClick={()=> setEdit({id: todo.id, value: todo.text})}
+					onClick={(e)=> {setEdit({id: todo.id, value: todo.text}); e.stopPropagation()}}
 					className="delete-icon"
 					/>
 				</div>
