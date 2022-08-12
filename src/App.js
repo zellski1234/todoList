@@ -63,9 +63,10 @@ function TodoForm ({ onSubmit }) {
 // --------------------------- Functional Component ------------------------
 function TodoList () {
 	const [list, setList] = useState([]);	
-	// stops user from adding empty todo list items
+	// stops user from adding empty todo list items 
+	// /^\s*$/ looks for blank space 
 	function addTodo (todo){
-		if(!todo.text){
+		if(!todo.text || /^\s*$/.test(todo.text)){
 			return
 		}
 		const newTodos = [todo, ...list]
@@ -139,17 +140,17 @@ function Todo ({ list, completeTodo, removeTodo, updateTodo}) {
 	return list.map((todo, index) => (
 		<div onClick={()=> {completeTodo(todo.id)}} className={todo.isComplete ? 'todo-row2 complete' : 'todo-row'} 
 			 key={index}>
-				<p key={todo.id}>
-					{index+1} {todo.text}
-				</p>
+				<div key={todo.id} id="todo-text-div">
+					<p id='todo-num'>{index+1}</p>&nbsp;<p id='todo-text'>{todo.text}</p>
+				</div>
 				<div className='icons'>
 					<BsTrash 
 						onClick={(e)=> removeTodo(todo.id, e)}
-						className="delete-icon"
+						id="delete-icon"
 					/>
 					<TiEdit 
-					onClick={(e)=> {setEdit({id: todo.id, value: todo.text}); e.stopPropagation()}}
-					className="delete-icon"
+						onClick={(e)=> {setEdit({id: todo.id, value: todo.text}); e.stopPropagation()}}
+						id="edit-icon"
 					/>
 				</div>
 		</div>
