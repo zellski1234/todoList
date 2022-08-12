@@ -1,13 +1,3 @@
-/* .App {
-	display: flex;
-	height: 100vh;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-} */
-
-
-
 /* copied */
 * {
 	box-sizing: border-box;
@@ -17,7 +7,7 @@
 	  'Lucida Sans', Arial, sans-serif;
   }
   
-  body {
+  body {	
 	background-color: #ddd;
 	min-height: 100vh;
 	flex-direction: column;
@@ -31,7 +21,7 @@
 	background-color: #bb5553;
 	border-radius: 20px;
 	overflow: hidden;
-	outline: 8px solid #bb5553;
+	border: 8px solid #bb5553;
 	box-shadow: 0px 2px 64px #00000033;
 	display: flex;
 	flex-direction: column;	
@@ -80,7 +70,7 @@ h1 {
 	flex-grow: 1;
 }
   
-  /* sets placeholder text to white */
+  /* sets placeholder text to 191919 */
   .todo-input::placeholder {
 	/* color: #e2e2e2; */
 	color: #191919;
@@ -136,11 +126,6 @@ h1 {
 	align-items: center;
 	margin: 4px auto;
 	color: #fff;
-	/* background: linear-gradient(
-	  90deg,
-	  rgba(20, 159, 255, 1) 0%,
-	  rgba(17, 122, 255, 1) 100%
-	); */
 	background-color: #3f3f3f;
 	cursor: pointer;  
 	padding: 16px;
@@ -193,7 +178,6 @@ h1 {
 	transition: 1s;
 }
 	
-  
 .edit-icon {
 	color: #fff;
   }
@@ -220,26 +204,8 @@ h1 {
 	.App {
 		transform: scale(1.3,1.3);
 		max-width: 400px;
-		background-color: #bb5553;
-		border-radius: 20px;
-		overflow: hidden;
-		outline: 8px solid #bb5553;
-		box-shadow: 0px 2px 64px #00000033;
-		display: flex;
-		flex-direction: column;	
-		text-align: center;
+		border-radius: 0px;
 		min-height: 600px;
-		justify-content: flex-start;
-		padding-bottom: 32px;
-		/* display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		
-		min-height: 600px;
-		
-		text-align: center;
-		border-radius: 20px;
-		 */
 	  }
 
 }
@@ -247,16 +213,9 @@ h1 {
 @media only screen and (min-width: 580px){
 	.App {
 		width: 800px;
-		background-color: #bb5553;
 		border-radius: 20px;
 		overflow: hidden;
-		outline: 8px solid #bb5553;
-		box-shadow: 0px 2px 64px #00000033;
-		display: flex;
-		flex-direction: column;	
-		text-align: center;
 		min-height: 500px;
-		justify-content: flex-start;
 		padding-bottom: 32px;
 	  }
 	  .todo-button {
@@ -291,14 +250,6 @@ h1 {
 	rgba(255, 12, 241, 1) 0%,
 	rgba(250, 0, 135, 1) 100%
   );
-}
-
-.todo-row:nth-child(4n + 3) {
-  background: linear-gradient(
-	90deg,
-	rgba(255, 118, 20, 1) 0%,
-	rgba(255, 84, 17, 1) 100%
-  );
-} */
+}*/
 
 
